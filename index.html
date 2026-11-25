@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="PetCare: gestão de tutores, pets e agendamentos para pet shops.">
+    <title>PetCare — Gestão pet simplificada</title>
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <div class="layout">
+        <aside class="sidebar" aria-label="Navegação principal">
+            <a class="brand" href="#inicio">
+                <img src="/img/Logo-petcare.png" alt="Logo PetCare" class="logo-petcare">
+            </a>
+            <p class="eyebrow">MENU PRINCIPAL</p>
+            <nav><a class="nav-link is-active" href="#inicio" data-view="inicio">⌂ Visão geral</a><a class="nav-link"
+                    href="#agendamentos" data-view="agendamentos">▦ Agendamentos</a><a class="nav-link" href="#pets"
+                    data-view="pets">♧ Pets</a><a class="nav-link" href="#tutores" data-view="tutores">♙ Tutores</a>
+            </nav>
+            <div class="sidebar-note"><strong>Cuidado em cada detalhe ♡</strong>
+                <p>Uma rotina mais leve para quem cuida de quem a gente ama.</p>
+            </div>
+        </aside>
+        <main id="conteudo" class="main">
+            <header class="topbar"><span class="mobile-brand">✳ pet<b>care</b></span>
+                <p>Workspace / <strong id="breadcrumb">Visão geral</strong></p><span class="online"><i></i> Sistema
+                    operacional</span>
+            </header>
+            <section class="view is-visible" id="view-inicio" aria-labelledby="page-title">
+                <div class="welcome">
+                    <div>
+                        <p class="eyebrow">SEU ESPAÇO PET</p>
+                        <h1 id="page-title">Cuidar bem começa <em>por aqui.</em></h1>
+                        <p class="subtitle">Organize sua rotina e mantenha cada rabinho feliz. 🐾</p>
+                    </div><button class="button primary" data-open-appointment>＋ Novo agendamento</button>
+                </div>
+                <div class="stats">
+                    <article class="stat"><span>Agendamentos de hoje</span><strong
+                            id="stat-today">—</strong><small>Atendimentos programados</small></article>
+                    <article class="stat"><span>Pets cadastrados</span><strong
+                            id="stat-pets">—</strong><small>Companheiros registrados</small></article>
+                    <article class="stat"><span>Tutores cadastrados</span><strong
+                            id="stat-tutors">—</strong><small>Pessoas que confiam em você</small></article>
+                    <article class="stat"><span>Pendentes</span><strong id="stat-pending">—</strong><small>Aguardando
+                            atendimento</small></article>
+                </div>
+                <div class="dashboard">
+                    <section class="panel">
+                        <div class="panel-title">
+                            <div>
+                                <p class="eyebrow">AGENDA</p>
+                                <h2>Próximos atendimentos</h2>
+                            </div><a href="#agendamentos" data-view="agendamentos">Ver agenda →</a>
+                        </div>
+                        <div id="upcoming">
+                            <p class="empty">Carregando agenda…</p>
+                        </div>
+                    </section>
+                    <aside class="panel">
+                        <p class="eyebrow">ATALHOS</p>
+                        <h2>O que vamos fazer?</h2><button class="shortcut" data-open-appointment>＋ <span><b>Agendar
+                                    serviço</b><small>Reserve um horário para um pet</small></span></button><button
+                            class="shortcut" data-open-pet>♧ <span><b>Cadastrar pet</b><small>Adicione um
+                                    companheiro</small></span></button><button class="shortcut" data-open-tutor>♙
+                            <span><b>Cadastrar tutor</b><small>Registre um responsável</small></span></button>
+                    </aside>
+                </div>
+            </section>
+            <section class="view" id="view-agendamentos" aria-labelledby="appointments-title" hidden>
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">ORGANIZAÇÃO DA ROTINA</p>
+                        <h1 id="appointments-title">Agendamentos</h1>
+                        <p class="subtitle">Tudo organizado para um atendimento especial.</p>
+                    </div><button class="button primary" data-open-appointment>＋ Novo agendamento</button>
+                </div>
+                <div class="toolbar"><label class="search">⌕ <span class="sr-only">Buscar agendamento</span><input
+                            id="appointment-search" placeholder="Buscar pet, tutor ou serviço"></label><label><span
+                            class="sr-only">Filtrar status</span><select id="appointment-status">
+                            <option>Todos</option>
+                            <option>Agendado</option>
+                            <option>Confirmado</option>
+                            <option>Concluído</option>
+                            <option>Cancelado</option>
+                        </select></label></div>
+                <div class="panel table-wrap" id="appointments-table"></div>
+            </section>
+            <section class="view" id="view-pets" aria-labelledby="pets-title" hidden>
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">CADASTRO</p>
+                        <h1 id="pets-title">Nossos pets</h1>
+                        <p class="subtitle">Cada personalidade merece um cuidado único.</p>
+                    </div><button class="button primary" data-open-pet>＋ Cadastrar pet</button>
+                </div><label class="search">⌕ <span class="sr-only">Buscar pet</span><input id="pet-search"
+                        placeholder="Buscar por nome, espécie ou raça"></label>
+                <div class="cards" id="pets-grid"></div>
+            </section>
+            <section class="view" id="view-tutores" aria-labelledby="tutors-title" hidden>
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">RELACIONAMENTO</p>
+                        <h1 id="tutors-title">Tutores</h1>
+                        <p class="subtitle">Conheça quem está por trás de cada focinho.</p>
+                    </div><button class="button primary" data-open-tutor>＋ Cadastrar tutor</button>
+                </div><label class="search">⌕ <span class="sr-only">Buscar tutor</span><input id="tutor-search"
+                        placeholder="Buscar por nome, e-mail ou telefone"></label>
+                <div class="cards" id="tutors-grid"></div>
+            </section>
+            <footer>PetCare · Gestão pet simplificada <span>Feito com cuidado ♡</span></footer>
+        </main>
+    </div>
+    <dialog id="tutor-dialog" class="dialog">
+        <form id="tutor-form">
+            <div class="dialog-title">
+                <div>
+                    <p class="eyebrow">NOVO CADASTRO</p>
+                    <h2>Cadastrar tutor</h2>
+                </div><button type="button" class="close" data-close-dialog aria-label="Fechar">×</button>
+            </div>
+            <p class="subtitle">Informe os dados de contato do responsável pelo pet.</p><label>Nome completo *<input
+                    name="name" required minlength="2" maxlength="120" autocomplete="name"
+                    placeholder="Ex.: Ana Souza"></label><label>E-mail *<input name="email" required type="email"
+                    maxlength="160" autocomplete="email" placeholder="ana@email.com"></label><label>Telefone *<input
+                    name="phone" required type="tel" minlength="8" maxlength="30" autocomplete="tel"
+                    placeholder="(11) 99999-9999"></label>
+            <p class="feedback" role="alert" aria-live="polite"></p>
+            <div class="actions"><button type="button" class="button secondary"
+                    data-close-dialog>Cancelar</button><button type="submit" class="button primary">Salvar
+                    tutor</button></div>
+        </form>
+    </dialog>
+    <dialog id="pet-dialog" class="dialog">
+        <form id="pet-form">
+            <div class="dialog-title">
+                <div>
+                    <p class="eyebrow">NOVO CADASTRO</p>
+                    <h2>Cadastrar pet</h2>
+                </div><button type="button" class="close" data-close-dialog aria-label="Fechar">×</button>
+            </div>
+            <p class="subtitle">Registre as informações do seu companheiro.</p><label>Nome do pet *<input name="name"
+                    required minlength="2" maxlength="120" placeholder="Ex.: Mel"></label><label>Espécie *<select
+                    name="species" required>
+                    <option value="">Selecione</option>
+                    <option>Cachorro</option>
+                    <option>Gato</option>
+                    <option>Ave</option>
+                    <option>Roedor</option>
+                    <option>Outro</option>
+                </select></label><label>Raça<input name="breed" maxlength="80"
+                    placeholder="Ex.: SRD"></label><label>Tutor responsável *<select name="tutorId"
+                    id="pet-tutor-select" required>
+                    <option value="">Selecione um tutor</option>
+                </select></label><label>Data de nascimento<input name="birthDate"
+                    type="date"></label><label>Observações<textarea name="notes" maxlength="500"
+                    rows="3"></textarea></label>
+            <p class="feedback" role="alert" aria-live="polite"></p>
+            <div class="actions"><button type="button" class="button secondary"
+                    data-close-dialog>Cancelar</button><button type="submit" class="button primary">Salvar pet</button>
+            </div>
+        </form>
+    </dialog>
+    <dialog id="appointment-dialog" class="dialog">
+        <form id="appointment-form">
+            <div class="dialog-title">
+                <div>
+                    <p class="eyebrow">ORGANIZE A ROTINA</p>
+                    <h2>Novo agendamento</h2>
+                </div><button type="button" class="close" data-close-dialog aria-label="Fechar">×</button>
+            </div>
+            <p class="subtitle">Escolha o pet, serviço e horário.</p><label>Pet *<select name="petId"
+                    id="appointment-pet-select" required>
+                    <option value="">Selecione um pet</option>
+                </select></label><label>Serviço *<select name="service" required>
+                    <option value="">Selecione</option>
+                    <option>Banho</option>
+                    <option>Tosa</option>
+                    <option>Banho e tosa</option>
+                    <option>Consulta veterinária</option>
+                    <option>Vacinação</option>
+                    <option>Outro</option>
+                </select></label>
+            <div class="form-row"><label>Data *<input name="date" id="appointment-date" type="date"
+                        required></label><label>Horário *<input name="time" type="time" required></label></div>
+            <label>Observações<textarea name="notes" maxlength="500" rows="3"></textarea></label>
+            <p class="feedback" role="alert" aria-live="polite"></p>
+            <div class="actions"><button type="button" class="button secondary"
+                    data-close-dialog>Cancelar</button><button type="submit" class="button primary">Confirmar
+                    agendamento</button></div>
+        </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>
